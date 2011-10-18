@@ -22,7 +22,7 @@
 # About The Speakers
 ## __Rossen Stoyanchev__
 
-* Staff Engineer at SpringSource
+* Staff Engineer SpringSource, VMware
 * Spring MVC, Spring Web Flow committer
 * Teaching and consulting around Spring
 * Created Spring Web course

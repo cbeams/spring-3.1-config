@@ -3,7 +3,8 @@
   "description": "",
   "sections": [
     {"section":"intro"},
-    {"section":"web-mvc-config"}
+    {"section":"web-mvc-config"},
+    {"section":"end"}
   ]
 }
 

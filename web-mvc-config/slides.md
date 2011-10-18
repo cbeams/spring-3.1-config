@@ -78,10 +78,10 @@
 # How to Customize the
 # Provided Config?
 
-* Implement `WebMvcConfigurer`
-* Or extend `WebMvcConfigurerAdapter` 
+* Implement <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurer.html">`WebMvcConfigurer`</a>
+* Or extend <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.html">`WebMvcConfigurerAdapter`</a>
 * Simple, discoverable configuration API
-* Equivalent to MVC namespace elements
+* Equivalent to MVC namespace
 
 !SLIDE smaller
 # Customization Example
@@ -114,19 +114,19 @@
 !SLIDE code
 # Demo 
 
-https://github.com/SpringSource/greenhouse
+<a href="https://github.com/SpringSource/greenhouse">https://github.com/SpringSource/greenhouse</a>
 
 __Package:__
-com.springsource.greenhouse.config
+<a href="https://github.com/SpringSource/greenhouse/tree/master/src/main/java/com/springsource/greenhouse/config">com.springsource.greenhouse.config</a>
 
 __Also:__
-src/main/webapp/WEB-INF/web.xml
+<a href="https://github.com/SpringSource/greenhouse/blob/master/src/main/webapp/WEB-INF/web.xml">src/main/webapp/WEB-INF/web.xml</a>
 
 !SLIDE incremental
 # Simple (vs. Advanced)
 # Customizations
 
-* `WebMvcConfigurer` targets the 80% case
+* <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurer.html">`WebMvcConfigurer`</a> targets the 80% case
 * A great starting point
 * A higher-level configuration API
 * Not a 1-for-1 with actual beans created
@@ -137,8 +137,8 @@ src/main/webapp/WEB-INF/web.xml
 # How To See Actual
 # Beans Created?
 
-* Look in `WebMvcConfigurationSupport`
-* The config imported via `@EnableWebMvc`
+* Look in <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurationSupport.html">`WebMvcConfigurationSupport`</a>
+* The config imported via <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/EnableWebMvc.html">`@EnableWebMvc`</a>
 * Class javadoc provides a full listing
 * Or just review `@Bean` methods
 
@@ -148,8 +148,8 @@ src/main/webapp/WEB-INF/web.xml
 # How To Customize Actual
 # Beans Created?
 
-* Extend directly form `WebMvcConfigurationSupport`
-* Remove `@EnableWebMvc`
+* Extend directly form <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurationSupport.html">`WebMvcConfigurationSupport`</a>
+* Remove <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/EnableWebMvc.html">`@EnableWebMvc`</a>
 * Override base class `@Bean` methods
 
 !SLIDE smaller
@@ -179,7 +179,11 @@ src/main/webapp/WEB-INF/web.xml
 !SLIDE code
 # Demo 
 
-https://github.com/rstoyanchev/spring-mvc-31-demo
+<a href="https://github.com/rstoyanchev/spring-mvc-31-demo">https://github.com/rstoyanchev/spring-mvc-31-demo</a>
+
+
+__Package:__
+<a href="https://github.com/rstoyanchev/spring-mvc-31-demo/tree/master/src/main/java/org/springframework/samples/mvc31/config">org.springframework.samples.mvc31.config</a>
 
 
 
