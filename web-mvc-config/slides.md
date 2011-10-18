@@ -51,7 +51,7 @@
     }
 
 !SLIDE smaller
-# Enable Java config in `web.xml`
+# Load MVC Java Config in `web.xml`
 
 	@@@ xml
 
@@ -73,6 +73,32 @@
                   AnnotationConfigWebApplicationContext
             </param-value>
         </context-param>
+
+!SLIDE smaller
+# Load MVC Java Config
+## (Servlet 3.0)
+
+	@@@ java
+
+    public class MyWebAppInitializer 
+                      implements WebApplicationInitializer {
+
+      public void onStartup(ServletContext servletContext) 
+            throws ServletException  {
+
+        AnnotationConfigWebApplicationContext wac = 
+                new AnnotationConfigWebApplicationContext();
+
+        wac.scan("org.examples.somepackage");
+
+        Servlet servlet = new DispatcherServlet(wac);
+        Dynamic disp = servletContext.addServlet("mvc", servlet);
+        disp.setLoadOnStartup(1);
+        disp.addMapping("/");
+
+      }
+    }
+
 
 !SLIDE incremental
 # How to Customize the
