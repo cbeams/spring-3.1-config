@@ -179,7 +179,7 @@ __Also:__
 * Override base class `@Bean` methods
 
 !SLIDE smaller
-# Advanced Customization Example
+# Customize `RequestMappingHandlerAdapter`
 
 	@@@ java
 
@@ -200,6 +200,32 @@ __Also:__
           // RequestMappingHandlerAdapter ...
 
       }
+    }
+
+!SLIDE smaller
+# Change Order for Resource Requests
+
+	@@@ java
+
+    @Configuration
+    public class WebConfig extends WebMvcConfigurationSupport {
+
+      @Override 
+      @Bean
+      public HandlerMapping resourceHandlerMapping() {
+
+        AbstractHandlerMapping hm = 
+            (AbstractHandlerMapping) 
+                super.resourceHandlerMapping();
+
+        // one ahead of annotated controllers
+        hm.setOrder(-1);
+
+        return hm;
+      }
+
+      // Override addResourceHandlers(..) ...
+
     }
 
 !SLIDE code

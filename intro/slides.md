@@ -1,18 +1,22 @@
-!SLIDE 
+!SLIDE subsection
 
-# Configuration Enhancements in Spring 3.1 #
+# __Configuration Enhancements Spring 3.1__
+<br><br>
+## Chris Beams
+### _SpringSource, VMware_
+<br><br>
+## Rossen Stoyanchev
+### _SpringSource, VMware_
 
 !SLIDE small
 
-# About The Speakers
 # __Chris Beams__
 
-* 1st 
-* 2nd
+* ..
+* ..
 
 !SLIDE small
 
-# About The Speakers
 # __Rossen Stoyanchev__
 
 * Staff Engineer SpringSource, VMware
