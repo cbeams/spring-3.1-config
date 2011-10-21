@@ -1,6 +1,6 @@
 !SLIDE subsection
 
-# __Configuration Enhancements Spring 3.1__
+# __Configuration Enhancements in Spring 3.1__
 <br><br>
 ## Chris Beams
 ### _SpringSource, VMware_
@@ -12,8 +12,11 @@
 
 # __Chris Beams__
 
-* ..
-* ..
+* Senior Technical Staff at SpringSource, VMware
+* Spring Framework committer
+* Train and consult around Spring
+* Enterprise Integration with Spring course author
+* Bay area
 
 !SLIDE small
 
