@@ -30,21 +30,10 @@
 
 !SLIDE subsection
 
-# Goals
-
-
-!SLIDE commandline incremental
-
-# __XML is Over!__
-(if you want it)
-<br/><br/>
-<br/><br/>
-
-    $ find myproject/ -name '*.xml' | wc -l
-    0
+# Goals TODO
 
 !SLIDE subsection
-# quickest. history. ever.
+# time machine
 <br/><br/>
 
 !SLIDE
@@ -53,11 +42,144 @@
 
 !SLIDE center
     @@@ xml
-      <bean/>
+    <beans/>
+
+!SLIDE
+    @@@ xml
+    <beans>
+
+    </beans>
+
+!SLIDE
+    @@@ xml
+    <beans>
+        <bean id="foo" class="com.foo.Foo"/>
+    </beans>
+
+!SLIDE
+    @@@ xml
+    <beans>
+        <bean id="foo" class="com.foo.Foo"/>
+        <bean id="bar" class="com.foo.Bar">
+           <property name="foo" ref="foo"/>
+        </bean>
+    </beans>
+
+!SLIDE
+    @@@ xml
+    <beans>
+        <bean id="foo" class="com.foo.Foo"/>
+        <bean id="bar" class="com.foo.Bar">
+           <property name="foo" ref="foo"/>
+        </bean>
+        <bean .../>
+    </beans>
+
+!SLIDE
+    @@@ xml
+    <beans>
+        <bean id="foo" class="com.foo.Foo"/>
+        <bean id="bar" class="com.foo.Bar">
+           <property name="foo" ref="foo"/>
+        </bean>
+        <bean .../>
+        <bean .../>
+    </beans>
+
+!SLIDE
+    @@@ xml
+    <beans>
+        <bean id="foo" class="com.foo.Foo"/>
+        <bean id="bar" class="com.foo.Bar">
+           <property name="foo" ref="foo"/>
+        </bean>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+    </beans>
+
+!SLIDE
+    @@@ xml
+    <beans>
+        <bean id="foo" class="com.foo.Foo"/>
+        <bean id="bar" class="com.foo.Bar">
+           <property name="foo" ref="foo"/>
+        </bean>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+    </beans>
+
+!SLIDE
+    @@@ xml
+    <beans>
+        <bean id="foo" class="com.foo.Foo"/>
+        <bean id="bar" class="com.foo.Bar">
+           <property name="foo" ref="foo"/>
+        </bean>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+    </beans>
+
+!SLIDE
+    @@@ xml
+    <beans>
+        <bean id="foo" class="com.foo.Foo"/>
+        <bean id="bar" class="com.foo.Bar">
+           <property name="foo" ref="foo"/>
+        </bean>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+
+    </beans>
+
+!SLIDE
+    @@@ xml
+    <beans>
+        <bean id="foo" class="com.foo.Foo"/>
+        <bean id="bar" class="com.foo.Bar">
+           <property name="foo" ref="foo"/>
+        </bean>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <bean .../>
+        <import resource="more-beans.xml"/>
+    </beans>
+
+!SLIDE center
+# "Spring beans XML"
 
 !SLIDE center incremental bullets
-    @@@ xml
-      <bean/>
+# Spring beans XML
 * simple
 * general purpose
 * flexible
@@ -66,8 +188,7 @@
 # But...
 
 !SLIDE center incremental bullets
-    @@@ xml
-      <bean/>
+# Spring beans XML
 * verbose
 * not type-safe
 * special tooling
@@ -88,10 +209,10 @@
     <jee:jndi-lookup/>
     <util:list/>
 
-!SLIDE center smaller
+!SLIDE center
 # "Spring XML namespaces"
 
-!SLIDE center smaller incremental bullets
+!SLIDE center incremental bullets
 # Spring XML namespaces
 * concise
 * powerful
@@ -100,7 +221,7 @@
 !SLIDE smaller subsection
 # But...
 
-!SLIDE center smaller incremental bullets
+!SLIDE center incremental bullets
 # Spring XML namespaces
 * opaque
 * non-extensible
@@ -125,17 +246,19 @@
     @@@ xml
     <context:component-scan/>
 
-!SLIDE center smaller
+!SLIDE center
 # "Annotation-Driven Injection"
 
-!SLIDE center smaller incremental bullets
+!SLIDE center incremental bullets
 # Annotation-Driven Injection
 * _really_ concise, convenient
+* other
+* yet another
 
 !SLIDE smaller subsection
 # But...
 
-!SLIDE smaller incremental bullets
+!SLIDE incremental bullets
 # Annotation-Driven Injection
 * can&apos;t wire up third-party code
 * ambiguities can arise (enter @Qualifier)
@@ -374,6 +497,7 @@
 
 * type-safe, object-oriented
 * can configure any component
+* complete programmatic control
 * no special tooling required
 
 !SLIDE smaller subsection
@@ -387,8 +511,386 @@
 * xml still required for tx mgmt, aop, etc
 * no support in _TestContext_ framework
 
-!SLIDE center incremental bullets
-# @Bean
 
-* pro: general purpose, flexible
-* con: verbose, not type-safe
+!SLIDE center
+# Spring 3.1
+<br/><br/>
+
+!SLIDE center
+    @@@ java
+    @Enable*
+
+<br/><br/>
+<br/><br/>
+
+!SLIDE center
+    @@@ java
+    @Enable*
+
+ _(and friends)_
+
+!SLIDE center
+# e.g.
+    @@@ java
+    @EnableTransactionManagement
+    @EnableAspectJAutoProxy
+    @ComponentScan
+
+!SLIDE smaller center
+# "Java-Based Application Configuration"
+
+!SLIDE smaller center incremental bullets
+# "Java-Based Application Configuration"
+* good
+* better
+* best
+
+!SLIDE smaller subsection
+# But...
+
+!SLIDE smaller subsection
+# But... ?
+
+!SLIDE center incremental bullets
+# No buts.
+
+!SLIDE center incremental bullets
+# No buts.
+* 3.1 completes the vision
+* can mix and match all styles
+* which means
+
+!SLIDE commandline incremental
+
+# __XML is Over!__
+
+<br/><br/><br/><br/>
+<br/><br/><br/><br/><br/>
+
+
+!SLIDE commandline incremental
+
+# __XML is Over!__
+if you want it
+<br/><br/>
+<br/><br/><br/>
+
+
+!SLIDE center
+
+# __XML IS OVER!__
+if you want it
+<br/>
+With Apologies to John & Yoko
+
+!SLIDE center
+
+![xml-is-over.jpg](xml-is-over.jpg)
+
+!SLIDE center
+
+![if-you-want-it.png](if-you-want-it.png)
+
+!SLIDE commandline incremental
+# __XML is Over!__
+
+    $ find myproject/ -name '*.xml' | wc -l
+    0
+
+!SLIDE smaller incremental bullets
+# I mean, if you&apos;ve got this
+    @@@ java
+    package com.win;
+
+    @Component
+    public class TehAwesome {
+        @Autowired
+        public void setStuff(Stuff stuff) { ... }
+    }
+
+<br/><br/><br/><br/>
+<br/><br/><br/><br/>
+<br/><br/><br/>
+
+!SLIDE smaller incremental bullets
+# I mean, if you&apos;ve got this
+    @@@ java
+    package com.win;
+
+    @Component
+    public class TehAwesome {
+        @Autowired
+        public void setStuff(Stuff stuff) { ... }
+    }
+
+# ... then _this_ is kind of ironic ...
+    @@@ xml
+    <context:component-scan base-package="com.win"/>
+
+!SLIDE smaller incremental bullets
+# I mean, if you&apos;ve got this
+    @@@ java
+    package com.win;
+
+    @Component
+    public class TehAwesome {
+        @Autowired
+        public void setStuff(Stuff stuff) { ... }
+    }
+
+# ... but _this_ makes a lot more sense.
+    @@@ java
+    @ComponentScan("com.win")
+
+!SLIDE smaller incremental bullets
+# and if you&apos;ve got this
+    @@@ java
+    package com.win;
+
+    @Repository
+    public class WidgetRepo {
+        @Transactional
+        public void add(Widget widget) { ... }
+    }
+
+<br/><br/><br/><br/>
+<br/><br/><br/><br/>
+<br/><br/><br/>
+
+!SLIDE smaller incremental bullets
+# and if you&apos;ve got this
+    @@@ java
+    package com.win;
+
+    @Repository
+    public class WidgetRepo {
+        @Transactional
+        public void add(Widget widget) { ... }
+    }
+
+# ... then why do this ...
+    @@@ xml
+    <tx:annotation-driven/>
+
+!SLIDE smaller incremental bullets
+# and if you&apos;ve got this
+    @@@ java
+    package com.win;
+
+    @Repository
+    public class WidgetRepo {
+        @Transactional
+        public void add(Widget widget) { ... }
+    }
+
+# ... when you could do this?
+    @@@ xml
+    @EnableTransactionManagement
+
+
+!SLIDE smaller subsection
+# all together now
+
+!SLIDE smaller subsection
+# autowired component
+    @@@ java
+    @Repository
+    public class JdbcWidgetRepo {
+        private final JdbcTemplate;
+
+        @Autowired
+        public JdbcWidgetRepo(DataSource dataSource) {
+            this.jdbcTemplate = new JdbcTemplate(dataSource);
+        }
+
+        @Transactional
+        public void add(Widget widget) { /* use jdbcTemplate */ }
+    }
+
+!SLIDE smaller subsection
+# configuration class
+
+    @@@ java
+    @Configuration
+    @ComponentScan("com.win")
+    @EnableTransactionManagement
+    public class Config {
+        @Bean
+        public DataSource dataSource() throws NamingException {
+            Context jndi = new InitialContext();
+            DataSource ds = (DataSource) jndi.lookup("java:...");
+            return ds;
+        }
+
+        @Bean
+        public PlatformTransactionManager txManager() ... {
+            return
+                new DataSourceTransactionManager(dataSource());
+        }
+    }
+
+!SLIDE smaller
+    @@@ java
+    @Configuration
+    @ComponentScan("com.win") // register @Component, @Service
+    @EnableTransactionManagement
+    public class Config {
+        @Bean
+        public DataSource dataSource() throws NamingException {
+            Context jndi = new InitialContext();
+            DataSource ds = (DataSource) jndi.lookup("java:...");
+            return ds;
+        }
+
+        @Bean
+        public PlatformTransactionManager txManager() ... {
+            return
+                new DataSourceTransactionManager(dataSource());
+        }
+    }
+
+!SLIDE smaller
+    @@@ java
+    @Configuration
+    @ComponentScan("com.win")
+    @EnableTransactionManagement // advise @Transactional methods
+    public class Config {
+        @Bean
+        public DataSource dataSource() throws NamingException {
+            Context jndi = new InitialContext();
+            DataSource ds = (DataSource) jndi.lookup("java:...");
+            return ds;
+        }
+
+        @Bean
+        public PlatformTransactionManager txManager() ... {
+            return
+                new DataSourceTransactionManager(dataSource());
+        }
+    }
+
+!SLIDE smaller
+    @@@ java
+    @Configuration
+    @ComponentScan("com.win")
+    @EnableTransactionManagement
+    public class Config { // wire up third-party stuff
+        @Bean
+        public DataSource dataSource() throws NamingException {
+            Context jndi = new InitialContext();
+            DataSource ds = (DataSource) jndi.lookup("java:...");
+            return ds;
+        }
+
+        @Bean
+        public PlatformTransactionManager txManager() ... {
+            return
+                new DataSourceTransactionManager(dataSource());
+        }
+    }
+
+!SLIDE smaller
+    @@@ java
+    @Configuration
+    @ComponentScan("com.win")
+    @EnableTransactionManagement
+    public class Config {
+        @Bean
+        public DataSource dataSource() throws NamingException {
+            Context jndi = new InitialContext(); // native API!
+            DataSource ds = (DataSource) jndi.lookup("java:...");
+            return ds;
+        }
+
+        @Bean
+        public PlatformTransactionManager txManager() ... {
+            return
+                new DataSourceTransactionManager(dataSource());
+        }
+    }
+
+!SLIDE smaller subsection
+# So..
+
+!SLIDE center
+    @@@ xml
+    <context:component-scan/>
+!SLIDE smaller
+# becomes
+<br/>
+!SLIDE center
+    @@@ xml
+    @ComponentScan
+
+!SLIDE center
+    @@@ xml
+    <tx:annotation-driven/>
+!SLIDE smaller
+# becomes
+<br/>
+!SLIDE center
+    @@@ xml
+    @EnableTransactionManagement
+
+!SLIDE center
+    @@@ xml
+    <aop:aspectj-autoproxy/>
+!SLIDE smaller
+# becomes
+<br/>
+!SLIDE center
+    @@@ xml
+    @EnableAspectJAutoProxy
+
+!SLIDE center
+    @@@ xml
+    <task:annotation-driven/>
+!SLIDE smaller
+# becomes
+<br/>
+!SLIDE center
+    @@@ xml
+    @EnableScheduling
+    and
+    @EnableAsync
+
+!SLIDE center
+    @@@ xml
+    <mvc:annotation-driven/>
+!SLIDE smaller
+# becomes
+<br/>
+!SLIDE center
+    @@@ xml
+    @EnableWebMvc
+
+!SLIDE smaller
+# you get the idea
+<br/>
+
+!SLIDE smaller subsection
+# But...
+
+!SLIDE center smaller incremental bullets
+# what about
+* transparency?
+* extensibility?
+* flexibility?
+
+!SLIDE center smaller incremental bullets
+# TODO: design goals of @Enable
+* code example of @Import?
+* code example of ...
+
+!SLIDE center
+# __XML IS OVER!__
+<br/><br/><br/><br/>
+
+!SLIDE center
+# __XML IS OVER!__
+and not just for Spring stuff
+
+!SLIDE center
+# __XML IS OVER!__
+and not just for Spring stuff
+
