@@ -1,1 +1,5 @@
 *.sw?
+.classpath
+.gradle
+.project
+.settings
