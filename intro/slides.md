@@ -77,48 +77,6 @@
         </bean>
         <bean .../>
         <bean .../>
-    </beans>
-
-!SLIDE
-    @@@ xml
-    <beans>
-        <bean id="foo" class="com.foo.Foo"/>
-        <bean id="bar" class="com.foo.Bar">
-           <property name="foo" ref="foo"/>
-        </bean>
-        <bean .../>
-        <bean .../>
-        <bean .../>
-        <bean .../>
-    </beans>
-
-!SLIDE
-    @@@ xml
-    <beans>
-        <bean id="foo" class="com.foo.Foo"/>
-        <bean id="bar" class="com.foo.Bar">
-           <property name="foo" ref="foo"/>
-        </bean>
-        <bean .../>
-        <bean .../>
-        <bean .../>
-        <bean .../>
-        <bean .../>
-        <bean .../>
-    </beans>
-
-!SLIDE
-    @@@ xml
-    <beans>
-        <bean id="foo" class="com.foo.Foo"/>
-        <bean id="bar" class="com.foo.Bar">
-           <property name="foo" ref="foo"/>
-        </bean>
-        <bean .../>
-        <bean .../>
-        <bean .../>
-        <bean .../>
-        <bean .../>
         <bean .../>
         <bean .../>
         <bean .../>
@@ -224,9 +182,6 @@
 # Spring 2.5
 <br/><br/>
 
-!SLIDE center smaller
-# (Enter Java 5 and @Annotations)
-
 !SLIDE center
     @@@ java
     @Autowired
@@ -245,8 +200,8 @@
 !SLIDE center incremental bullets
 # Annotation-Driven Injection
 * _really_ concise, convenient
-* TODO 2
-* TODO 3
+* now widely used
+* especially for MVC @Controllers
 
 !SLIDE smaller subsection
 # But...
@@ -402,6 +357,54 @@
     }
 
 !SLIDE smaller
+# bean definition
+    @@@ java
+    @Import(OtherConfig.class) // =~ <import/>
+    @Configuration
+    public class AppConfig {
+
+        @Bean
+        public QuoteService quoteService() {
+            RealTimeQuoteService quoteService = ...;
+
+            return quoteService;
+        }
+
+    }
+
+!SLIDE smaller
+# bean definition
+    @@@ java
+    @Import(OtherConfig.class)
+    @Configuration
+    public class AppConfig {
+        @Autowired QuoteSource quoteSource; // from OtherConfig
+        @Bean
+        public QuoteService quoteService() {
+            RealTimeQuoteService quoteService = ...;
+
+            return quoteService;
+        }
+
+    }
+
+!SLIDE smaller
+# bean definition
+    @@@ java
+    @Import(OtherConfig.class)
+    @Configuration
+    public class AppConfig {
+        @Autowired QuoteSource quoteSource;
+        @Bean
+        public QuoteService quoteService() {
+            RealTimeQuoteService quoteService = ...;
+            quoteService.setQuoteSource(quoteSource); // inject
+            return quoteService;
+        }
+
+    }
+
+!SLIDE smaller
 # bootstrap and use
     @@@ java
 
@@ -526,14 +529,15 @@
     @EnableAspectJAutoProxy
     @ComponentScan
 
-!SLIDE smaller center
-# "Java-Based Application Configuration"
+!SLIDE center incremental bullets
+# "Java Configuration"
+* (completed)
 
-!SLIDE smaller center incremental bullets
-# "Java-Based Application Configuration"
-* good
-* better
-* best
+!SLIDE center incremental bullets
+# Java Configuration (3.1)
+* completes the vision
+* can configure all major container features
+* mix and match styles as desired
 
 !SLIDE smaller subsection
 # But...
@@ -546,8 +550,8 @@
 
 !SLIDE center incremental bullets
 # No buts.
-* 3.1 completes the vision
-* can mix and match all styles
+* can be adopted incrementally
+* but can go _all the way_
 * which means...
 
 !SLIDE center
@@ -648,7 +652,7 @@
 !SLIDE smaller subsection
 # all together now
 
-!SLIDE smaller subsection
+!SLIDE smaller
 # autowired component
     @@@ java
     @Repository
@@ -664,9 +668,8 @@
         public void add(Widget widget) { /* use jdbcTemplate */ }
     }
 
-!SLIDE smaller subsection
+!SLIDE smaller
 # configuration class
-
     @@@ java
     @Configuration
     @ComponentScan("com.win")
@@ -687,9 +690,10 @@
     }
 
 !SLIDE smaller
+# configuration class
     @@@ java
     @Configuration
-    @ComponentScan("com.win") // register @Component, @Service
+    @ComponentScan("com.win") // register @Component, @Repository
     @EnableTransactionManagement
     public class Config {
         @Bean
@@ -707,6 +711,7 @@
     }
 
 !SLIDE smaller
+# configuration class
     @@@ java
     @Configuration
     @ComponentScan("com.win")
@@ -727,6 +732,7 @@
     }
 
 !SLIDE smaller
+# configuration class
     @@@ java
     @Configuration
     @ComponentScan("com.win")
@@ -747,6 +753,7 @@
     }
 
 !SLIDE smaller
+# configuration class
     @@@ java
     @Configuration
     @ComponentScan("com.win")
