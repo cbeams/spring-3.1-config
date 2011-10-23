@@ -888,9 +888,304 @@ With Apologies to John & Yoko
 
 !SLIDE center
 # __XML IS OVER!__
-and not just for Spring stuff
+for Hibernate integration, too
+
+!SLIDE center bullets incremental
+# Hibernate 4 support
+* Spring 3.1 RC1 builds against Hib 4.0.0.CR4
+* 3.1 GA will sync with 4.0 Final
+* new orm.hibernate4 packaging
+
+!SLIDE smaller
+# Familiar?
+    @@@ xml
+    <bean id="sessionFactory"
+        class="org.sfwk.orm.hibernate3.LocalSessionFactoryBean">
+      <property name="dataSource" ref="myDataSource"/>
+      <property name="mappingResources">
+        <list>
+          <value>Person.hbm.xml</value>
+          <value>Account.hbm.xml</value>
+        </list>
+      </property>
+      <property name="hibernateProperties">
+        <value>
+          hibernate.dialect=org.hibernate.dialect.HSQLDialect
+        </value>
+      </property>
+    </bean>
+
+!SLIDE smaller
+# Or even
+    @@@ xml
+    <bean id="sessionFactory"
+        class="org.sfwk.orm.hib3.AnnotationSessionFactoryBean">
+      <property name="dataSource" ref="myDataSource"/>
+      <property name="annotatedClasses">
+        <list>
+          <value>com.foo.Person</value>
+          <value>com.foo.Account</value>
+        </list>
+      </property>
+      <property name="hibernateProperties">
+        <value>
+          hibernate.dialect=org.hibernate.dialect.HSQLDialect
+        </value>
+      </property>
+    </bean>
+
+!SLIDE smaller
+# Or even
+    @@@ xml
+    <bean id="sessionFactory"
+        class="org.sfwk.orm.hib3.AnnotationSessionFactoryBean">
+      <property name="dataSource" ref="myDataSource"/>
+      <property name="annotatedClasses">
+        <list>
+          <value>com.foo.Person</value> <!-- again the irony -->
+          <value>com.foo.Account</value>
+        </list>
+      </property>
+      <property name="hibernateProperties">
+        <value>
+          hibernate.dialect=org.hibernate.dialect.HSQLDialect
+        </value>
+      </property>
+    </bean>
+
+!SLIDE smaller
+# We can do better than that.
+
+!SLIDE smaller
+    @@@ java
+    @Bean
+    public SessionFactory sessionFactory() {
+        return new LocalSessionFactoryBuilder(dataSource())
+            .addAnnotatedClasses(Person.class, Account.class)
+            .buildSessionFactory();
+    }
+
+!SLIDE incremental bullets
+# LocalSessionFactoryBuilder
+* Extends Hibernate&apos;s own Configuration class
+* only in the new orm.hibernate4 package
+
+!SLIDE smaller
+# Also...
+
+!SLIDE smaller
+    @@@ java
+    @Bean
+    public SessionFactory sessionFactory() {
+        return new LocalSessionFactoryBuilder(dataSource())
+            .addAnnotatedClasses(Person.class, Account.class)
+            .buildSessionFactory();
+    }
+<br/><br/><br/><br/>
+<br/><br/><br/><br/>
+<br/><br/>
+
+!SLIDE smaller
+    @@@ java
+    @Bean
+    public SessionFactory sessionFactory() {
+        return new LocalSessionFactoryBuilder(dataSource())
+            .addAnnotatedClasses(Person.class, Account.class)
+            .buildSessionFactory();
+    }
+
+    @Bean
+    public PersistenceExceptionTranslator exTranslator() {
+        return new HibernateExceptionTranslator();
+    }
 
 !SLIDE center
 # __XML IS OVER!__
-and not just for Spring stuff
+<br/><br/><br/><br/>
 
+
+!SLIDE center
+# __XML IS OVER!__
+and not just for Spring
+
+
+!SLIDE center incremental bullets
+# JPA
+
+!SLIDE smaller
+# persistence.xml
+    @@@ xml
+    <persistence xmlns="http://java.sun.com/xml/ns/persistence"
+                 xmlns:xsi="..."
+                 xsi:schemaLocation="..."
+                 version="2.0">
+       <persistence-unit name="sample">
+          <jta-data-source>java:/DefaultDS</jta-data-source>
+          <properties>
+             <property name="hibernate.dialect"
+                     value="org.hibernate.dialect.HSQLDialect"/>
+          </properties>
+       </persistence-unit>
+    </persistence>
+
+!SLIDE
+# say goodbye.
+
+!SLIDE smaller
+    @@@ java
+    @Bean
+    public LocalContainerEntityManagerFactoryBean emf() {
+        LocalContainerEntityManagerFactoryBean emf =
+            new LocalContainerEntityManagerFactoryBean();
+        emf.setDataSource(dataSource());
+        emf.setPersistenceXmlLocation(
+            "classpath:META-INF/persistence.xml");
+        return emf;
+    }
+
+!SLIDE smaller
+    @@@ java
+    @Bean
+    public LocalContainerEntityManagerFactoryBean emf() {
+        LocalContainerEntityManagerFactoryBean emf =
+            new LocalContainerEntityManagerFactoryBean();
+        emf.setDataSource(dataSource());
+        emf.setPersistenceXmlLocation( // no more!
+            "classpath:META-INF/persistence.xml");
+        return emf;
+    }
+
+!SLIDE smaller
+    @@@ java
+    @Bean
+    public LocalContainerEntityManagerFactoryBean emf() {
+        LocalContainerEntityManagerFactoryBean emf =
+            new LocalContainerEntityManagerFactoryBean();
+        emf.setDataSource(dataSource());
+
+        emf.setPackagesToScan("com.win.entity");
+        return emf;
+    }
+
+!SLIDE smaller
+    @@@ java
+    @Bean
+    public LocalContainerEntityManagerFactoryBean emf() {
+        LocalContainerEntityManagerFactoryBean emf =
+            new LocalContainerEntityManagerFactoryBean();
+        emf.setDataSource(dataSource());
+        // scan classpath for JPA @Entity types
+        emf.setPackagesToScan("com.win.entity");
+        return emf;
+    }
+
+
+!SLIDE center
+# __XML IS OVER!__
+and not just for Spring
+
+!SLIDE
+# web.xml
+
+!SLIDE smaller bullets incremental
+# web.xml
+    @@@ xml
+    <web-app>
+      <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>
+          org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+          <param-name>contextConfigLocation</param-name>
+          <param-value>
+            /WEB-INF/spring/dispatcher-config.xml
+          </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+      </servlet>
+      <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+      </servlet-mapping>
+    <web-app>
+
+!SLIDE bullets incremental
+# Gone.
+* (if you&apos;ve got Servlet 3)
+
+!SLIDE smaller
+# equivalent
+    @@@ java
+    public class WebInit implements WebApplicationInitializer {
+
+       @Override
+       public void onStartup(ServletContext container) {
+         XmlWebApplicationContext ctx =
+           new XmlWebApplicationContext()
+
+         ctx.setConfigLocation(
+           "/WEB-INF/spring/dispatcher-config.xml");
+
+         ServletRegistration.Dynamic dispatcher =
+           container.addServlet(
+            "dispatcher", new DispatcherServlet(ctx));
+
+         dispatcher.setLoadOnStartup(1);
+         dispatcher.addMapping("/");
+       }
+
+    }
+
+!SLIDE smaller
+# even better
+    @@@ java
+    public class WebInit implements WebApplicationInitializer {
+
+       @Override
+       public void onStartup(ServletContext container) {
+         AnnotationConfigWebApplicationContext ctx =
+           new AnnotationConfigWebApplicationContext()
+
+         ctx.register(DispatcherConfig.class);
+
+
+         ServletRegistration.Dynamic dispatcher =
+           container.addServlet(
+            "dispatcher", new DispatcherServlet(ctx));
+
+         dispatcher.setLoadOnStartup(1);
+         dispatcher.addMapping("/");
+       }
+
+    }
+
+!SLIDE incremental bullets
+# WebApplicationInitializer
+* Builds on Servlet 3&apos;s ServletContainerInitializer
+* Auto-detected on Servlet container startup
+
+!SLIDE incremental bullets
+* <del>application-context.xml</del>
+* <del>persistence.xml</del>
+* <del>web.xml</del>
+
+!SLIDE incremental commandline
+    $ find myproject/ -name '*.xml' | wc -l
+    0
+<br/><br/><br/>
+
+!SLIDE center
+# __XML IS OVER.__
+<br/><br/><br/><br/>
+
+!SLIDE center transition=fade
+![over.png](over.png)
+<br/><br/><br/>
+
+!SLIDE center
+![if-you-want-it.png](if-you-want-it.png)
+
+!SLIDE center transition=fade
+# __XML IS OVER,__
+if you want it.
