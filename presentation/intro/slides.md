@@ -1,5 +1,4 @@
 !SLIDE subsection
-
 # __Configuration Enhancements in Spring 3.1__
 <br><br>
 ## Chris Beams
@@ -9,7 +8,6 @@
 ### _SpringSource, VMware_
 
 !SLIDE small
-
 # __Chris Beams__
 
 * Senior Technical Staff at SpringSource, VMware
@@ -19,7 +17,6 @@
 * Bay area
 
 !SLIDE small
-
 # __Rossen Stoyanchev__
 
 * Staff Engineer SpringSource, VMware
@@ -27,10 +24,6 @@
 * Teach and consult, Spring Projects
 * Spring Web course author
 * NYC area
-
-!SLIDE subsection
-
-# Goals TODO
 
 !SLIDE subsection
 # time machine
@@ -252,8 +245,8 @@
 !SLIDE center incremental bullets
 # Annotation-Driven Injection
 * _really_ concise, convenient
-* other
-* yet another
+* TODO 2
+* TODO 3
 
 !SLIDE smaller subsection
 # But...
@@ -311,9 +304,6 @@
 
 !SLIDE center smaller
 # (quick refresher)
-
-!SLIDE center smaller
-# _(read: a silly, naive example follows)_
 
 !SLIDE smaller
 # bean definition
@@ -558,44 +548,11 @@
 # No buts.
 * 3.1 completes the vision
 * can mix and match all styles
-* which means
-
-!SLIDE commandline incremental
-
-# __XML is Over!__
-
-<br/><br/><br/><br/>
-<br/><br/><br/><br/><br/>
-
-
-!SLIDE commandline incremental
-
-# __XML is Over!__
-if you want it
-<br/><br/>
-<br/><br/><br/>
-
-
-!SLIDE center
-
-# __XML IS OVER!__
-if you want it
-<br/>
-With Apologies to John & Yoko
+* which means...
 
 !SLIDE center
 
 ![xml-is-over.jpg](xml-is-over.jpg)
-
-!SLIDE center
-
-![if-you-want-it.png](if-you-want-it.png)
-
-!SLIDE commandline incremental
-# __XML is Over!__
-
-    $ find myproject/ -name '*.xml' | wc -l
-    0
 
 !SLIDE smaller incremental bullets
 # I mean, if you&apos;ve got this
@@ -877,10 +834,17 @@ With Apologies to John & Yoko
 * extensibility?
 * flexibility?
 
-!SLIDE center smaller incremental bullets
-# TODO: design goals of @Enable
-* code example of @Import?
-* code example of ...
+
+!SLIDE smaller incremental bullets
+    @@@ java
+    @Configuration
+    @EnableScheduling
+    public class AppConfig {
+        // various @Bean definitions
+    }
+
+!SLIDE
+TODO: go into detail? show writing your own?
 
 !SLIDE center
 # __XML IS OVER!__
@@ -1189,3 +1153,197 @@ and not just for Spring
 !SLIDE center transition=fade
 # __XML IS OVER,__
 if you want it.
+
+
+!SLIDE
+# Testing support
+
+!SLIDE
+# "TestContext Framework"
+
+!SLIDE center incremental bullets
+# TestContext Framework
+* Since Spring 2.5
+* Eases _integration testing_ with Spring
+* Support for JUnit and TestNG
+
+!SLIDE center
+    @@@ java
+    @RunWith(SpringJUnit4ClassRunner.class)
+
+!SLIDE center
+    @@@ java
+    @ContextConfiguration
+
+!SLIDE smaller
+# 2.5
+    @@@java
+    @RunWith(SpringJUnit4ClassRunner.class)
+
+    @ContextConfiguration("app-context.xml")
+    public class MyTest {
+        @Autowired MyBean bean;
+
+        @Test
+        public void testXyz() {
+
+        }
+    }
+
+!SLIDE smaller
+# 2.5
+    @@@java
+    @RunWith(SpringJUnit4ClassRunner.class)
+    // ApplicationContext will be loaded from app-context.xml
+    @ContextConfiguration("app-context.xml")
+    public class MyTest {
+        @Autowired MyBean bean;
+
+        @Test
+        public void testXyz() {
+
+        }
+    }
+
+!SLIDE smaller
+# 2.5
+    @@@java
+    @RunWith(SpringJUnit4ClassRunner.class)
+
+    @ContextConfiguration("app-context.xml")
+    public class MyTest {
+        @Autowired MyBean bean; // injected from app-context.xml
+
+        @Test
+        public void testXyz() {
+
+        }
+    }
+
+!SLIDE smaller
+# 2.5
+    @@@java
+    @RunWith(SpringJUnit4ClassRunner.class)
+
+    @ContextConfiguration("app-context.xml")
+    public class MyTest {
+        @Autowired MyBean bean;
+
+        @Test
+        public void testXyz() {
+            // assertions against bean
+        }
+    }
+
+!SLIDE smaller
+# 3.1
+    @@@java
+    @RunWith(SpringJUnit4ClassRunner.class)
+
+    @ContextConfiguration(classes=AppConfig.class)
+    public class MyTest {
+        @Autowired MyBean bean;
+
+        @Test
+        public void testXyz() {
+            // assertions against bean
+        }
+    }
+
+!SLIDE smaller
+# 3.1
+    @@@java
+    @RunWith(SpringJUnit4ClassRunner.class)
+    // ApplicationContext will be loaded from AppConfig
+    @ContextConfiguration(classes=AppConfig.class)
+    public class MyTest {
+        @Autowired MyBean bean;
+
+        @Test
+        public void testXyz() {
+            // assertions against bean
+        }
+    }
+
+!SLIDE smaller
+# 3.1
+    @@@java
+    @RunWith(SpringJUnit4ClassRunner.class)
+
+    @ContextConfiguration(classes=AppConfig.class)
+    public class MyTest {
+        @Autowired MyBean bean; // injected from AppConfig
+
+        @Test
+        public void testXyz() {
+            // assertions against bean
+        }
+    }
+
+!SLIDE center incremental bullets
+# TestContext Framework
+* Fully updated for Spring 3.1
+* Support for @Configuration, @Profile
+
+!SLIDE center
+Much more on testing at Sam&apos;s and Rossen&apos;s talk on
+<a href="http://www.springone2gx.com/conference/chicago/2011/10/session?id=24020">Friday at 10:15</a>
+
+!SLIDE center
+# Environment API
+
+!SLIDE center
+# @Profile
+
+!SLIDE center
+# PropertySource API
+
+!SLIDE center
+# nested &lt;beans/&gt;
+
+!SLIDE center
+# c: namespace
+
+!SLIDE center incremental bullets
+# 3.1 RC1 is out
+* Now is the time to test
+* RC2 in a couple weeks
+* GA by year end
+
+!SLIDE subsection
+# __Thanks__
+
+!SLIDE center smaller
+# _(read: a silly, naive example follows)_
+
+!SLIDE commandline incremental
+# __XML is Over!__
+
+<br/><br/><br/><br/>
+<br/><br/><br/><br/><br/>
+
+
+!SLIDE commandline incremental
+
+# __XML is Over!__
+if you want it
+<br/><br/>
+<br/><br/><br/>
+
+
+!SLIDE center
+
+# __XML IS OVER!__
+if you want it
+<br/>
+With Apologies to John & Yoko
+
+!SLIDE center
+![if-you-want-it.png](if-you-want-it.png)
+
+!SLIDE commandline incremental
+# __XML is Over!__
+
+    $ find myproject/ -name '*.xml' | wc -l
+    0
+
