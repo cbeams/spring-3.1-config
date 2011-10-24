@@ -233,7 +233,7 @@
 !SLIDE center smaller
 # (quick refresher)
 
-!SLIDE smaller
+!SLIDE small
 # bean definition
     @@@ java
 
@@ -249,7 +249,7 @@
 
     }
 
-!SLIDE smaller
+!SLIDE small
 # bean definition
     @@@ java
     // @Configuration classes =~ <beans/> documents
@@ -265,7 +265,7 @@
 
     }
 
-!SLIDE smaller
+!SLIDE small
 # bean definition
     @@@ java
 
@@ -281,7 +281,7 @@
 
     }
 
-!SLIDE smaller
+!SLIDE small
 # bean definition
     @@@ java
 
@@ -297,7 +297,7 @@
 
     }
 
-!SLIDE smaller
+!SLIDE small
 # bean definition
     @@@ java
 
@@ -313,7 +313,7 @@
 
     }
 
-!SLIDE smaller
+!SLIDE small
 # bean definition
     @@@ java
 
@@ -329,7 +329,7 @@
 
     }
 
-!SLIDE smaller
+!SLIDE small
 # bean definition
     @@@ java
     @Import(OtherConfig.class) // =~ <import/>
@@ -345,7 +345,7 @@
 
     }
 
-!SLIDE smaller
+!SLIDE small
 # bean definition
     @@@ java
     @Import(OtherConfig.class)

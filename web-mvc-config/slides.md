@@ -1,26 +1,42 @@
 
 !SLIDE incremental bullets
-# Default MVC Config
+# Spring MVC Configuration
+## (Quick Refresher)
+
+!SLIDE incremental bullets
+# (1) Default Configuration
 
 * I.e. blank `<name>-servlet.xml`
 * `DispatcherServlet.properties`
-* `HandlerMapping`, `HandlerAdapter` .. other default types to use
-* Add your own type .. turns off defaults
-
-.notes This is intentionally minimal and neutral. Few assumptions about what application needs.
+* `HandlerMapping`, `HandlerAdapter` .. and other types to instantiate by default
+* Add own type .. turns off default types
 
 !SLIDE incremental bullets
-# Spring MVC Namespace
+# Default Config Experience
 
-	@@@ xml
+* Intentionally minimalistic
+* Fairly neutral
+* Flexible
+* Can be verbose for common tasks
 
+!SLIDE incremental bullets
+# (2) MVC Namespace
+
+* Minimize boilerplate for @MVC
+* Targets the 80% use case
 * More opinionated
-* Targets the 80%
-* Minimize boilerplate
-* Serve as starting point
+* Serves as starting point
 
 !SLIDE incremental bullets
-# What's Behind This?
+# MVC Namespace Experience
+
+* Does a number of useful things
+* Minimizes boilerplate
+* Transparent .. ?
+* Flexible .. ?
+
+!SLIDE incremental bullets
+# What's Behind...
 
 	@@@ xml
 
@@ -28,16 +44,24 @@
 
 * Find `BeanDefinitionParser`
 * Read meta-data code
-* How to customize the config?
-* `BeanPostProcessor` ... works, not obvious!
+* How to customize?
+* <a href="https://jira.springsource.org/browse/SPR-8648?focusedCommentId=70352&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-70352">`BeanPostProcessor works`</a> .. not obvious!
 
 !SLIDE incremental bullets
 # Ease-of-use vs. Control
 
-* Transparency is key for MVC config
+* A good starting point is important
+* But transparency is key in MVC config
 * So is flexibility
-* __MVC Java config__ designed with those experiences in mind
-* Match, not mirror namespace
+
+!SLIDE incremental bullets
+# (3) MVC Java Config
+## (Spring 3.1)
+
+* Designed with preivous experiences in mind
+* Match MVC namespace capabilities
+* More transparent
+* More flexible
 
 .notes Many copy+paste AnnotationMethodHandlerAdapter config not seeing it overlaps with the config from <mvc:annotation-driven />
 
@@ -55,14 +79,41 @@
 
         }
 
+
 !SLIDE small
+# MVC Java Config Example
+## (Spring 3.1)
+
+	@@@ java
+
+        // Equivalent to <mvc:annotation:driven/>
+
+        @EnableWebMvc   // <-- What's behind ? 
+        @Configuration
+        public class WebConfig {
+
+        }
+
+!SLIDE small transition=scrollLeft
 # `@EnableWebMvc`
 
     @@@ java
 
         @Retention(RetentionPolicy.RUNTIME)
-        @Target(ElementType.TYPE)
         @Import(DelegatingWebMvcConfiguration.class)
+        @Target(ElementType.TYPE)
+        public @interface EnableWebMvc {
+
+        }
+
+!SLIDE small transition=fade
+# `@EnableWebMvc`
+
+    @@@ java
+
+
+        @Import(DelegatingWebMvcConfiguration.class)
+
         public @interface EnableWebMvc {
 
         }
@@ -91,37 +142,13 @@
             </param-value>
         </context-param>
 
-!SLIDE smaller
-# Load MVC Java Config
-## (Servlet 3.0)
-
-	@@@ java
-
-    public class MyWebAppInitializer 
-                   implements WebApplicationInitializer {
-
-      public void onStartup(ServletContext sc) 
-            throws ServletException  {
-
-        AnnotationConfigWebApplicationContext wac = new ... ;
-        wac.scan("org.examples.somepackage");
-
-        Servlet servlet = new DispatcherServlet(wac);
-        Dynamic dispatcher = sc.addServlet("mvc", servlet);
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
-
-      }
-    }
-
-
 !SLIDE incremental bullets
-# To Customize ...
+# Built-in Customizations
 
 * Implement <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurer.html">`WebMvcConfigurer`</a>
-* Simple, discoverable configuration API
-* Matches MVC namespace
 * Or extend <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.html">`WebMvcConfigurerAdapter`</a>
+* Simple, discoverable config API
+* Matches MVC namespace
 
 !SLIDE smaller
 # Customization Example
@@ -159,17 +186,18 @@ __<a href="https://github.com/SpringSource/greenhouse">https://github.com/Spring
 <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurer.html">`WebMvcConfigurer`</a>
 
 !SLIDE incremental bullets
-# Common To Advanced
+# Beyond The Common Case
 
-* <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurer.html">`WebMvcConfigurer`</a> is the 80% case
+* <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurer.html">`WebMvcConfigurer`</a> targets the 80%
+* A good starting point
 * Like the MVC namespace
-* A common starting point
-* What actual beans are created?
+* Transparency .. ?
+* Flexibility .. ?
 
 .notes Once again the ease-of-use vs. control issue exceptin this time not a dilemma
 
 !SLIDE incremental bullets
-# Check Provided Config
+# See Provided Config
 
 * Inspect <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurationSupport.html">`WebMvcConfigurationSupport`</a>
 * The config imported via <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/EnableWebMvc.html">`@EnableWebMvc`</a>
@@ -179,15 +207,15 @@ __<a href="https://github.com/SpringSource/greenhouse">https://github.com/Spring
 .notes Easier to read is relative to reading BeanDefinitionParser code with the MVC namespace
 
 !SLIDE incremental bullets
-# Customize Provided Config
+# Switch To Advanced Config
 
 * Remove <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/EnableWebMvc.html">`@EnableWebMvc`</a>
 * Extend <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurationSupport.html">`WebMvcConfigurationSupport`</a>
-* Override same methods as `WebMvcConfigurer` 
-* Also override `@Bean` methods!
+* Override the same methods as in `WebMvcConfigurer` 
+* Also override any `@Bean` methods!
 
 !SLIDE smaller
-# Advanced Customization
+# Advanced Config Example
 
 	@@@ java
 
