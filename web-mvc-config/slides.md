@@ -56,7 +56,7 @@
         }
 
 !SLIDE small
-# `@EnabledWebMvc`
+# `@EnableWebMvc`
 
     @@@ java
 
