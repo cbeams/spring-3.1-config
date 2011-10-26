@@ -174,7 +174,7 @@
 # Annotation-Driven Injection
 * _really_ concise, convenient
 * now widely used
-* especially for MVC @Controllers
+* especially for MVC `@Controllers`
 
 !SLIDE smaller subsection
 # But...
@@ -182,7 +182,7 @@
 !SLIDE incremental bullets
 # Annotation-Driven Injection
 * can&apos;t wire up third-party code
-* ambiguities can arise (enter @Qualifier)
+* ambiguities can arise (enter `@Qualifier`)
 * still requires xml to bootstrap
 
 !SLIDE smaller incremental bullets
@@ -233,7 +233,7 @@
 !SLIDE center smaller
 # (quick refresher)
 
-!SLIDE small
+!SLIDE smaller
 # bean definition
     @@@ java
 
@@ -249,7 +249,7 @@
 
     }
 
-!SLIDE small
+!SLIDE smaller
 # bean definition
     @@@ java
     // @Configuration classes =~ <beans/> documents
@@ -265,7 +265,7 @@
 
     }
 
-!SLIDE small
+!SLIDE smaller
 # bean definition
     @@@ java
 
@@ -281,7 +281,7 @@
 
     }
 
-!SLIDE small
+!SLIDE smaller
 # bean definition
     @@@ java
 
@@ -297,7 +297,7 @@
 
     }
 
-!SLIDE small
+!SLIDE smaller
 # bean definition
     @@@ java
 
@@ -313,7 +313,7 @@
 
     }
 
-!SLIDE small
+!SLIDE smaller
 # bean definition
     @@@ java
 
@@ -329,7 +329,7 @@
 
     }
 
-!SLIDE small
+!SLIDE smaller
 # bean definition
     @@@ java
     @Import(OtherConfig.class) // =~ <import/>
@@ -345,7 +345,7 @@
 
     }
 
-!SLIDE small
+!SLIDE smaller
 # bean definition
     @@@ java
     @Import(OtherConfig.class)
@@ -391,7 +391,7 @@
         QuoteService quoteService =
           ctx.getBean(QuoteService.class);
 
-        System.out.println(quoteService.currentValue("VMW"));
+        System.out.println(quoteService.currentValue("AAPL"));
 
       }
     }
@@ -410,7 +410,7 @@
         QuoteService quoteService =
           ctx.getBean(QuoteService.class);
 
-        System.out.println(quoteService.currentValue("VMW"));
+        System.out.println(quoteService.currentValue("AAPL"));
 
       }
     }
@@ -429,7 +429,7 @@
         QuoteService quoteService =
           ctx.getBean(QuoteService.class);
 
-        System.out.println(quoteService.currentValue("VMW"));
+        System.out.println(quoteService.currentValue("AAPL"));
 
       }
     }
@@ -448,7 +448,7 @@
         QuoteService quoteService =
           ctx.getBean(QuoteService.class);
         // use the bean however desired
-        System.out.println(quoteService.currentValue("VMW"));
+        System.out.println(quoteService.currentValue("AAPL"));
 
       }
     }

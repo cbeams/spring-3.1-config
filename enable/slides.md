@@ -15,13 +15,19 @@
 # `<beans profile="dev"/>`
 
 !SLIDE center
-# `@Profile`
+# `@Profile("dev")`
 
 !SLIDE center
 # nested `<beans/>`
 
 !SLIDE center
 # `c:` namespace
+
+!SLIDE incremental bullets
+* <a href="http://blog.springsource.com/2011/02/11/spring-framework-3-1-m1-released">`Environment` blog post</a>
+* <a href="http://blog.springsource.com/2011/02/14/spring-3-1-m1-introducing-profile">`@Profile` blog post</a>
+* <a href="http://blog.springsource.com/2011/02/15/spring-3-1-m1-unified-property-management">`PropertySource` blog post</a>
+* <a href="http://www.infoq.com/presentations/Configuration-in-Spring-3-1">InfoQ talk on all the above</a>
 
 !SLIDE
 # testing support
@@ -151,11 +157,13 @@
 !SLIDE center incremental bullets
 # TestContext Framework
 * Fully updated for Spring 3.1
-* Support for @Configuration, @Profile
+* Support for `@Configuration`, `@Profile`
 
-!SLIDE center
-Much more on testing at Sam&apos;s and Rossen&apos;s talk on
+!SLIDE center bullets incremental
+* Much more on testing at Sam&apos;s and Rossen&apos;s talk on
 <a href="http://www.springone2gx.com/conference/chicago/2011/10/session?id=24020">Friday at 10:15</a>
+* Updated TestContext <a href="http://static.springsource.org/spring/docs/3.1.0.RC1/spring-framework-reference/htmlsingle/spring-framework-reference.html#testcontext-ctx-management-javaconfig">reference documentation</a>
+* <a href="http://blog.springsource.com/2011/06/21/spring-3-1-m2-testing-with-configuration-classes-and-profiles/">Testing with `@Configuration` classes</a> blog post
 
 !SLIDE center
 # `@Enable*`
