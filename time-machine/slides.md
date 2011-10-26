@@ -473,7 +473,7 @@
 
 # Java Configuration
 
-* no equivalent to <namespace:*/>
+* no equivalent to `<namespace:*/>`
 * xml still required for tx mgmt, aop, etc
 * no support in _TestContext_ framework
 
