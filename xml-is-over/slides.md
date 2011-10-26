@@ -337,4 +337,4 @@ and not just _Spring_ XML
 if you want it*
 
 !SLIDE small
-# &#42;which means that you really shouldn't worry, because XML support is definitely not going anywhere. This is a concern that commonly comes up when we talk about annotations and such, but we've said it before and we'll said it again: XML was, is, and ever will be a first class citizen in Spring. The changes in 3.1 just mean that if you *don't* want XML, you don't have to use it. That's all. kthx, bye.
+# &#42;which means that you really shouldn't worry, because XML support is definitely not going anywhere. This is a concern that commonly comes up when we talk about annotations and such, but we've said it before and we'll say it again: XML was, is, and ever will be a first class citizen in Spring. The changes in 3.1 just mean that if you *don't* want XML, you don't have to use it. That's all. kthx, bye.
