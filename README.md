@@ -1,0 +1,1 @@
+Slides available at [http://cbeams.github.com/spring-3.1-config](http://cbeams.github.com/spring-3.1-config)
