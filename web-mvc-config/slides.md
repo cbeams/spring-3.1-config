@@ -1,4 +1,3 @@
-
 !SLIDE incremental bullets
 # Spring MVC Configuration
 ## (Quick Refresher)
@@ -71,7 +70,7 @@
 
 	@@@ java
 
-        // Equivalent to <mvc:annotation:driven/>
+        // Equivalent to <mvc:annotation-driven/>
 
         @EnableWebMvc
         @Configuration
@@ -86,7 +85,7 @@
 
 	@@@ java
 
-        // Equivalent to <mvc:annotation:driven/>
+        // Equivalent to <mvc:annotation-driven/>
 
         @EnableWebMvc   // <-- What's behind ? 
         @Configuration
