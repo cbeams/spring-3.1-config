@@ -1,1 +1,5 @@
-Slides available at [http://cbeams.github.com/spring-3.1-config](http://cbeams.github.com/spring-3.1-config)
+Originally delivered at http://springone2gx.com/conference/chicago/2011/10/session?id=24006
+
+See https://github.com/schacon/showoff#readme for instructions on running the showoff presentation software locally.
+
+Static HTML at http://cbeams.github.com/spring-3.1-config
